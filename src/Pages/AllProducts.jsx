@@ -52,7 +52,7 @@ const AllProducts = () => {
                 </div>
 
                 {/* Main Section */}
-                <section className="text-gray-800 body-font bg-gray-100 px-10">
+                <section className="text-gray-800 body-font px-10">
                     <div className="container px-5 lg:px-0 py-5 mx-auto">
                         <div className="flex flex-wrap -m-4">
                             {productData.map((item, index) => {

@@ -17,30 +17,25 @@ const UserDashboard = () => {
     <Layout>
       <div className="container mx-auto px-4 py-6 lg:py-8">
         {/* Profile Section */}
-        <div className="bg-pink-100 py-6 rounded-xl border border-pink-200 shadow-lg mb-8">
+        <div className="py-6 rounded-xl border border-gray-300 shadow-lg mb-8 bg-white">
           <div className="flex justify-center mb-4">
-            <img 
-              className="h-16 w-16 rounded-full"
-              src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png" 
+            <img
+              className="h-16 w-16 rounded-full border-2 border-pink-400"
+              src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png"
               alt="User Profile"
             />
           </div>
           <div className="text-center">
-            <h1 className="text-lg font-bold text-gray-800">
-              Name: Kamal Nayan Upadhyay
-            </h1>
-            <h2 className="text-lg font-medium text-gray-600">
-              Email: test@gmail.com
-            </h2>
+            <h1 className="text-xl font-bold text-gray-800">Name: Kamal Nayan Upadhyay</h1>
+            <h2 className="text-lg font-medium text-gray-600">Email: test@gmail.com</h2>
           </div>
         </div>
 
         {/* Order Details Section */}
-        <h2 className="text-2xl lg:text-3xl font-bold mb-4">Order Details</h2>
-        <div className="flex flex-col lg:flex-row bg-pink-50 rounded-xl border border-pink-200 shadow-md overflow-hidden">
-          {/* Order Summary */}
+        <div className="flex flex-col lg:flex-row rounded-xl border border-gray-300 shadow-md bg-white overflow-hidden">
           <div className="w-full lg:max-w-xs p-6 border-r border-pink-200">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h2 className="text-2xl lg:text-3xl font-bold mb-4 border-b border-pink-400">Order Summary</h2>
+            <div className="grid grid-cols-1 gap-4">
               <div className="mb-4">
                 <div className="text-sm font-semibold text-gray-700">Order Id</div>
                 <div className="text-sm font-medium text-gray-900">#74557994327</div>
@@ -62,12 +57,13 @@ const UserDashboard = () => {
 
           {/* Product List */}
           <div className="flex-1 p-6">
+            <h2 className="text-2xl lg:text-3xl font-bold mb-4 border-b border-pink-400">Product List</h2>
             <ul className="divide-y divide-gray-200">
               {products.map((product) => (
-                <li key={product.id} className="flex py-4">
+                <li key={product.id} className="flex py-4 hover:bg-gray-100 transition">
                   <div className="flex-shrink-0">
                     <img
-                      className="h-24 w-24 rounded-lg border border-gray-300 object-cover"
+                      className="h-24 w-24 rounded-lg border border-gray-300 object-cover transition-transform transform hover:scale-105"
                       src={product.imageSrc}
                       alt={product.name}
                     />
