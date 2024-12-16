@@ -1,10 +1,10 @@
 import React from 'react';
 
-const OrderDetail = () => {
+const UserDetail = () => {
     return (
         <div className="bg-white p-5 rounded-lg shadow-lg mt-10">
-            <div className="py-5">
-                <h1 className="text-xl text-purple-600 font-bold">All Orders</h1>
+            <div className="py-5 flex justify-between items-center">
+                <h1 className="text-xl text-purple-600 font-bold">All Users</h1>
             </div>
 
             {/* Table */}
@@ -13,7 +13,7 @@ const OrderDetail = () => {
                     <thead>
                         <tr>
                             <th scope="col" className="h-12 px-6 text-md border-l first:border-l-0 border-purple-300 text-slate-700 bg-slate-200 font-bold">S.No.</th>
-                            <th scope="col" className="h-12 px-6 text-md border-l first:border-l-0 border-purple-300 text-slate-700 bg-slate-200 font-bold">Location Name</th>
+                            <th scope="col" className="h-12 px-6 text-md border-l first:border-l-0 border-purple-300 text-slate-700 bg-slate-200 font-bold">User Name</th>
                             <th scope="col" className="h-12 px-6 text-md border-l first:border-l-0 border-purple-300 text-slate-700 bg-slate-200 font-bold">Edit</th>
                             <th scope="col" className="h-12 px-6 text-md border-l first:border-l-0 border-purple-300 text-slate-700 bg-slate-200 font-bold">Delete</th>
                         </tr>
@@ -24,7 +24,7 @@ const OrderDetail = () => {
                                 1.
                             </td>
                             <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-purple-300 text-slate-500 first-letter:uppercase">
-                                {'Sample Product'}
+                                {'John Doe'}
                             </td>
                             <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-purple-300 text-green-500 cursor-pointer">
                                 Edit
@@ -41,4 +41,4 @@ const OrderDetail = () => {
     );
 }
 
-export default OrderDetail;
+export default UserDetail;

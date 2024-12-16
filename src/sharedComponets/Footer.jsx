@@ -3,31 +3,31 @@ import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <div>
-            {/* footer  */}
-            <footer className="text-gray-600 body-font bg-pink-600">
-                {/* main  */}
+            {/* Footer */}
+            <footer className="text-gray-300 body-font bg-gray-800">
+                {/* Main Section */}
                 <div className="container px-5 py-5 mx-auto flex items-center sm:flex-row flex-col">
-                    {/* logo  */}
+                    {/* Logo */}
                     <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
                         <span className="text-xl font-bold">HyperCart</span>
                     </a>
-                    {/* para  */}
-                    <p className="text-sm text-gray-100 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-                        © 2024 hypercart —
+                    {/* Copyright Info */}
+                    <p className="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-700 sm:py-2 sm:mt-0 mt-4">
+                        © 2024 HyperCart —
                         <Link
-                        to={'/'}
-                            className="text-gray-100 ml-1"
+                            to={'/'}
+                            className="text-gray-400 ml-1"
                             rel="noopener noreferrer"
                             target="_blank"
                         >
                             @hypercart
                         </Link>
                     </p>
-                    
-                    {/* media icon  */}
+
+                    {/* Social Media Icons */}
                     <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-                        {/* facebook  */}
-                        <a className="text-gray-100 cursor-pointer">
+                        {/* Facebook */}
+                        <a className="text-gray-400 cursor-pointer hover:text-white">
                             <svg
                                 fill="currentColor"
                                 strokeLinecap="round"
@@ -40,8 +40,8 @@ const Footer = () => {
                             </svg>
                         </a>
 
-                        {/* twitter  */}
-                        <a className="ml-3 text-gray-100 cursor-pointer">
+                        {/* Twitter */}
+                        <a className="ml-3 text-gray-400 cursor-pointer hover:text-white">
                             <svg
                                 fill="currentColor"
                                 strokeLinecap="round"
@@ -54,8 +54,8 @@ const Footer = () => {
                             </svg>
                         </a>
 
-                        {/* instagram  */}
-                        <a className="ml-3 text-gray-100 cursor-pointer">
+                        {/* Instagram */}
+                        <a className="ml-3 text-gray-400 cursor-pointer hover:text-white">
                             <svg
                                 fill="none"
                                 stroke="currentColor"
@@ -70,8 +70,8 @@ const Footer = () => {
                             </svg>
                         </a>
 
-                        {/* linkedIn  */}
-                        <a className="ml-3 text-gray-100 cursor-pointer">
+                        {/* LinkedIn */}
+                        <a className="ml-3 text-gray-400 cursor-pointer hover:text-white">
                             <svg
                                 fill="currentColor"
                                 stroke="currentColor"
@@ -93,6 +93,6 @@ const Footer = () => {
             </footer>
         </div>
     );
-}
+};
 
 export default Footer;

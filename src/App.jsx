@@ -2,7 +2,6 @@ import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ScrollTop from './Components/ScrollTop'
 import AdminDashboard from './Admin/AdminDashboard'
-import AllProducts from './Admin/AllProducts'
 import Auth from './Auth/Auth'
 import Home from './Pages/Home'
 import NoPage from './Pages/NoPage'
@@ -11,6 +10,7 @@ import Cart from './Pages/Cart'
 import UserDashboard from './Pages/UserDashboard'
 import AddProduct from './Admin/AddProduct'
 import UpdateProduct from './Admin/UpdateProduct'
+import AllProducts from './Pages/AllProducts'
 function App() {
   return (
     <div>
