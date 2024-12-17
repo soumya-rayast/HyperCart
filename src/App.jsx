@@ -12,6 +12,9 @@ import AddProduct from './Admin/AddProduct'
 import UpdateProduct from './Admin/UpdateProduct'
 import AllProducts from './Pages/AllProducts'
 import MyState from './context/myState'
+import { Toaster } from 'react-hot-toast'
+import ProtectedRouteForUser from './ProtectedRoutes/ProtectedRouteForUser'
+import ProtectedRouteForAdmin from './ProtectedRoutes/ProtectedRouteForAdmin'
 function App() {
   return (
     <div>
@@ -25,11 +28,23 @@ function App() {
             <Route path='/productInfo' element={<ProductInfo />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/allProduct' element={<AllProducts />} />
-            <Route path='/user-dashboard' element={<UserDashboard />} />
-            <Route path='/admin-dashboard' element={<AdminDashboard />} />
-            <Route path='/addproduct' element={<AddProduct />} />
+            <Route path='/user-dashboard' element={
+              <ProtectedRouteForUser>
+                <UserDashboard />
+              </ProtectedRouteForUser>
+            } />
+            <Route path='/admin-dashboard' element={
+              <ProtectedRouteForAdmin >
+                <AdminDashboard />
+              </ProtectedRouteForAdmin>
+            } />
+            <Route path='/addproduct' element={
+              <ProtectedRouteForAdmin>
+                <AddProduct />
+              </ProtectedRouteForAdmin>} />
             <Route path='/updateproduct' element={<UpdateProduct />} />
           </Routes>
+          <Toaster />
         </Router>
       </MyState>
     </div>

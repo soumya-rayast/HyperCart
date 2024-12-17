@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Layout from "../Layout/Layout";
 
 const products = [
@@ -13,6 +14,13 @@ const products = [
 ];
 
 const UserDashboard = () => {
+  // get user data 
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("users")) || {};
+    setUser(storedUser);
+  }, []);
   return (
     <Layout>
       <div className="container mx-auto px-4 py-6 lg:py-8">
@@ -26,8 +34,10 @@ const UserDashboard = () => {
             />
           </div>
           <div className="text-center">
-            <h1 className="text-xl font-bold text-gray-800">Name: Kamal Nayan Upadhyay</h1>
-            <h2 className="text-lg font-medium text-gray-600">Email: test@gmail.com</h2>
+            <h1 className="text-xl font-bold text-gray-800">Name: {user?.name}</h1>
+            <h2 className="text-lg font-medium text-gray-600">Email: {user?.email} t</h2>
+            <h1 className=" text-center text-lg"><span className=" font-bold">Date : </span>{user?.date}</h1>
+            <h1 className=" text-center text-lg"><span className=" font-bold">Role : </span>{user?.role}</h1>
           </div>
         </div>
 
