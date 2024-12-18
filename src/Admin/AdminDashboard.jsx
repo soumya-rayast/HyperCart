@@ -2,8 +2,15 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import AdminProductdetail from './AdminProductdetail';
 import OrderDetail from './OrderDetail';
 import UserDetail from './UserDetail';
+import { useEffect, useState } from 'react';
 
 const AdminDashboard = () => {
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem("users")) || {};
+        setUser(storedUser);
+    }, []);
     return (
         <div className="bg-gradient-to-r from-purple-500 to-pink-500 min-h-screen pt-2 ">
             {/* Top */}
@@ -24,8 +31,10 @@ const AdminDashboard = () => {
                         </div>
                         {/* text */}
                         <div className="">
-                            <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Name :</span> Kamal Nayan Upadhyay</h1>
-                            <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Email :</span> test@gmail.com</h1>
+                            <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Name :</span> {user?.name}</h1>
+                            <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Email :</span> {user?.email}</h1>
+                            <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Date :</span> {user?.date}</h1>
+                            <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Role :</span> {user?.role}</h1>
                         </div>
                     </div>
                 </div>

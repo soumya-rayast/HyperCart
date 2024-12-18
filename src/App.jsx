@@ -29,19 +29,18 @@ function App() {
             <Route path='/cart' element={<Cart />} />
             <Route path='/allProduct' element={<AllProducts />} />
             <Route path='/user-dashboard' element={
-              <ProtectedRouteForUser>
+ 
                 <UserDashboard />
-              </ProtectedRouteForUser>
+
             } />
             <Route path='/admin-dashboard' element={
-              <ProtectedRouteForAdmin >
+
                 <AdminDashboard />
-              </ProtectedRouteForAdmin>
+
             } />
             <Route path='/addproduct' element={
-              <ProtectedRouteForAdmin>
                 <AddProduct />
-              </ProtectedRouteForAdmin>} />
+            } />
             <Route path='/updateproduct' element={<UpdateProduct />} />
           </Routes>
           <Toaster />
