@@ -15,7 +15,8 @@ import MyState from './context/myState'
 import { Toaster } from 'react-hot-toast'
 import ProtectedRouteForUser from './ProtectedRoutes/ProtectedRouteForUser'
 import ProtectedRouteForAdmin from './ProtectedRoutes/ProtectedRouteForAdmin'
-import Category from './Components/Category'
+
+import CategoryPage from './Pages/CategoryPage'
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
             <Route path='/productInfo/:id' element={<ProductInfo />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/allProduct' element={<AllProducts />} />
-            <Route path='/category/:categoryname' element={<Category/>} />
+            <Route path='/category/:categoryname' element={<CategoryPage/>} />
             <Route path='/user-dashboard' element={
  
                 <UserDashboard />
