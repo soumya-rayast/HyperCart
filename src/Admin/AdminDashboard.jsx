@@ -2,15 +2,14 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import AdminProductdetail from './AdminProductdetail';
 import OrderDetail from './OrderDetail';
 import UserDetail from './UserDetail';
-import { useEffect, useState } from 'react';
+import { useContext} from 'react';
+import myContext from '../context/myContext';
 
 const AdminDashboard = () => {
-    const [user, setUser] = useState({});
+    const user = JSON.parse(localStorage.getItem('users'));
+    const context = useContext(myContext);
+    const {getAllproduct} = context;
 
-    useEffect(() => {
-        const storedUser = JSON.parse(localStorage.getItem("users")) || {};
-        setUser(storedUser);
-    }, []);
     return (
         <div className="bg-gradient-to-r from-purple-500 to-pink-500 min-h-screen pt-2 ">
             {/* Top */}
@@ -68,7 +67,7 @@ const AdminDashboard = () => {
                                             <path d="m15 11-1 9" />
                                         </svg>
                                     </div>
-                                    <h2 className="title-font font-medium text-3xl text-pink-400 fonts1">10</h2>
+                                    <h2 className="title-font font-medium text-3xl text-pink-400 fonts1">{getAllproduct.length}</h2>
                                     <p className="text-pink-500 font-bold">Total Products</p>
                                 </div>
                             </Tab>

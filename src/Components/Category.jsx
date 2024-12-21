@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const category = [
     {
         image: 'https://cdn-icons-png.flaticon.com/256/4359/4359963.png',
@@ -34,6 +36,7 @@ const category = [
 ];
 
 const Category = () => {
+    const navigate = useNavigate();
     return (
         <div className="mt-16">
             {/* Main Container */}
@@ -43,6 +46,7 @@ const Category = () => {
                     {category.map((item, index) => (
                         <div
                             key={index}
+                            onClick={()=>navigate(`/category/${item.name}`)}
                             className="flex flex-col items-center space-y-2 transition-all hover:scale-105"
                         >
                             {/* Image Container */}
