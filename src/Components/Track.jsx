@@ -74,7 +74,7 @@ const Track = () => {
                             key={track.id}
                             className="p-4 md:w-1/3 sm:w-1/2 w-full"
                         >
-                            <div className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105 shadow-lg text-white px-6 py-8 rounded-lg">
+                            <div className="bg-black hover:to-purple-500 transition-all duration-300 transform hover:scale-105 shadow-lg text-white px-6 py-8 rounded-lg">
                                 {track.icon}
                                 <h2 className="title-font font-bold text-lg">
                                     {track.title}

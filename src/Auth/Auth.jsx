@@ -121,7 +121,7 @@ const Auth = () => {
       <div className="auth_form bg-white px-6 lg:px-12 py-6 border border-gray-300 rounded-xl shadow-lg w-full max-w-md">
         {/* Heading */}
         <div className="mb-6">
-          <h2 className="text-center text-2xl font-bold text-purple-600">
+          <h2 className="text-center text-2xl font-bold text-black">
             {isLogin ? 'Login' : 'Signup'}
           </h2>
         </div>
@@ -170,7 +170,7 @@ const Auth = () => {
           <button
             type="button"
             onClick={isLogin ? userLoginFunction : userSignUpFunction}
-            className={`bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg w-full transition-all duration-300 ${
+            className={`bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg w-full transition-all duration-300 ${
               loading ? 'opacity-70 cursor-not-allowed' : ''
             }`}
             disabled={loading}
@@ -186,7 +186,7 @@ const Auth = () => {
               <>
                 Don't have an account?{' '}
                 <span
-                  className="text-purple-600 font-bold cursor-pointer hover:underline"
+                  className="text-black font-bold cursor-pointer hover:underline"
                   onClick={toggleAuthMode}
                 >
                   Signup
@@ -196,7 +196,7 @@ const Auth = () => {
               <>
                 Already have an account?{' '}
                 <span
-                  className="text-purple-600 font-bold cursor-pointer hover:underline"
+                  className="text-black font-bold cursor-pointer hover:underline"
                   onClick={toggleAuthMode}
                 >
                   Login

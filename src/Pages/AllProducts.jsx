@@ -13,7 +13,7 @@ const AllProducts = () => {
             <div className="py-8">
                 {/* Heading */}
                 <div>
-                    <h1 className="text-center mb-5 text-3xl font-semibold text-indigo-700">All Products</h1>
+                    <h1 className="text-center mb-5 text-3xl font-semibold text-black">All Products</h1>
                 </div>
 
                 {/* Main Section */}
@@ -41,12 +41,12 @@ const AllProducts = () => {
                                                 <h1 className="title-font text-lg font-medium text-gray-900 mb-2">
                                                     {title.length > 25 ? `${title.substring(0, 25)}...` : title}
                                                 </h1>
-                                                <h1 className="title-font text-lg font-semibold text-indigo-600 mb-3">
+                                                <h1 className="title-font text-lg font-semibold text-black mb-3">
                                                     ₹{price}
                                                 </h1>
 
                                                 <div className="flex justify-center">
-                                                    <button className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg w-full transition-all duration-300">
+                                                    <button className="bg-black text-white font-bold py-2 px-4 rounded-lg w-full transition-all duration-300">
                                                         Add To Cart
                                                     </button>
                                                 </div>

@@ -50,7 +50,7 @@ const Category = () => {
                             className="flex flex-col items-center space-y-2 transition-all hover:scale-105"
                         >
                             {/* Image Container */}
-                            <div className="w-20 h-20 lg:w-28 lg:h-28 rounded-full bg-gradient-to-r from-blue-400 via-purple-500 to-indigo-600 p-1 shadow-lg hover:shadow-2xl">
+                            <div className="w-20 h-20 lg:w-28 lg:h-28 rounded-full bg-black  p-1 shadow-lg hover:shadow-2xl">
                                 <div className="bg-white rounded-full w-full h-full flex justify-center items-center">
                                     <img
                                         src={item.image}

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"; // For hamburger and close icons
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"; 
 import SearchBar from "../Components/SearchBar";
 
 const Navbar = () => {
@@ -48,7 +48,7 @@ const Navbar = () => {
     );
 
     return (
-        <nav className="bg-gradient-to-r from-purple-500 to-pink-500 sticky top-0 z-10">
+        <nav className="bg-black sticky top-0 z-10">
             {/* Main */}
             <div className="flex justify-between items-center py-3 px-4 lg:px-8">
                 {/* Left: Logo */}

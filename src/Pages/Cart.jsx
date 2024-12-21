@@ -44,7 +44,7 @@ const Cart = () => {
     <Layout>
       <div className="container mx-auto px-4 max-w-7xl lg:px-0">
         <div className="mx-auto max-w-2xl py-8 lg:max-w-7xl">
-          <h1 className="text-center mb-5 text-3xl font-semibold text-indigo-700">
+          <h1 className="text-center mb-5 text-3xl font-semibold text-black">
             Shopping Cart
           </h1>
           <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
@@ -160,7 +160,7 @@ const Cart = () => {
                 <div className="px-2 pb-4 font-medium text-green-700">
                   <div className="flex gap-4 mb-6">
                     <button
-                      className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg w-full transition-all duration-300"
+                      className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg w-full transition-all duration-300"
                     >
                       Buy now
                     </button>
