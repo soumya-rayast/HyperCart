@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRouteForUser = ({ children }) => {
-    const user = JSON.parse(localStorage.getItem('users'));
-    if (user?.role === 'user') {
-        return children
-    } else {
-        return <Navigate to={'/auth'} />
-    }
-}
+    const user = JSON.parse(localStorage.getItem('user')); 
 
-export default ProtectedRouteForUser
+    if (user?.role === 'user') {
+        return children;
+    } else {
+        return <Navigate to={'/auth'} />;
+    }
+};
+
+export default ProtectedRouteForUser;

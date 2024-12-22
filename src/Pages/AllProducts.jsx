@@ -6,17 +6,18 @@ import Loader from "../Components/Loader";
 
 const AllProducts = () => {
     const navigate = useNavigate();
+
+    // get information from myContext 
     const context = useContext(myContext)
+    // getting all Products and loading from  mycontext file 
     const { loading, getAllproduct } = context;
+
     return (
         <Layout>
             <div className="py-8">
-                {/* Heading */}
                 <div>
                     <h1 className="text-center mb-5 text-3xl font-semibold text-black">All Products</h1>
                 </div>
-
-                {/* Main Section */}
                 <section className="text-gray-800 body-font px-10">
                     <div className="container px-5 lg:px-0 py-5 mx-auto">
                         <div className="flex justify-center">

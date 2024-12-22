@@ -31,19 +31,21 @@ function App() {
             <Route path='/productInfo/:id' element={<ProductInfo />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/allProduct' element={<AllProducts />} />
-            <Route path='/category/:categoryname' element={<CategoryPage/>} />
+            <Route path='/category/:categoryname' element={<CategoryPage />} />
             <Route path='/user-dashboard' element={
- 
+              <ProtectedRouteForUser >
                 <UserDashboard />
-
+              </ProtectedRouteForUser>
             } />
             <Route path='/admin-dashboard' element={
-
+              <ProtectedRouteForAdmin >
                 <AdminDashboard />
-
+              </ProtectedRouteForAdmin>
             } />
             <Route path='/addproduct' element={
+              <ProtectedRouteForAdmin>
                 <AddProduct />
+              </ProtectedRouteForAdmin>
             } />
             <Route path='/updateproduct/:id' element={<UpdateProduct />} />
           </Routes>

@@ -11,9 +11,9 @@ const Home = () => {
         <Layout>
             <HeroSection />
             <Category />
-            <HomePageProductCard/>
-            <Track/>
-            <Testimonial/>
+            <HomePageProductCard />
+            <Track />
+            <Testimonial />
         </Layout>
     )
 }

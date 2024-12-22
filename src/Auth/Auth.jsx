@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { auth, fireDB } from '../firebase/firebaseconfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, Timestamp } from 'firebase/firestore';
 import Loader from '../Components/Loader';
 
 const Auth = () => {
@@ -66,7 +66,6 @@ const Auth = () => {
           year: 'numeric',
         }),
       };
-
       // Save to Firestore
       const userReference = collection(fireDB, 'users');
       await addDoc(userReference, newUser);
@@ -89,25 +88,34 @@ const Auth = () => {
     if (!validateForm()) return;
     setLoading(true);
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, user.email, user.password);
+        const userCredential = await signInWithEmailAndPassword(auth, user.email, user.password);
+        
+        const userRef = doc(fireDB, 'users', userCredential.user.uid);
+        const userDoc = await getDoc(userRef);
 
-      const loggedInUser = {
-        email: userCredential.user.email,
-        uid: userCredential.user.uid,
-        lastLogin: new Date().toLocaleString(),
-      };
+        // Check if the document exists
+        if (!userDoc.exists()) {
+            throw new Error('User document does not exist');
+        }
 
-      // Save to local storage
-      saveUserToLocalStorage(loggedInUser);
+        const userData = userDoc.data();
+        const loggedInUser = {
+            email: userCredential.user.email,
+            uid: userCredential.user.uid,
+            role: userData.role || 'user',
+            lastLogin: new Date().toLocaleString(),
+        };
 
-      toast.success('Login Successful');
-      navigate('/');
+        saveUserToLocalStorage(loggedInUser);
+        toast.success('Login Successful');
+        navigate('/');
     } catch (error) {
-      toast.error(`Login Failed: ${error.message}`);
-      console.error(error);
+        toast.error(`Login Failed: ${error.message}`);
+        console.error('Error details:', error);
     }
     setLoading(false);
-  };
+};
+
 
   // Toggle Login/Signup Mode
   const toggleAuthMode = () => {

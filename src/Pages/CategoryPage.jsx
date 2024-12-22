@@ -6,19 +6,15 @@ import Loader from '../Components/Loader';
 
 const CategoryPage = () => {
     const { categoryname } = useParams();
-
+    const navigate = useNavigate();
     const context = useContext(myContext);
     const { getAllproduct, loading } = context;
-
-    const navigate = useNavigate();
-
     // filter product 
-    const filterProduct = getAllproduct.filter((obj)=> obj.category.includes(categoryname));
+    const filterProduct = getAllproduct.filter((obj) => obj.category.includes(categoryname));
     // console.log(filterProduct)
     return (
         <Layout>
             <div className="mt-10">
-                {/* Heading  */}
                 <div className="">
                     <h1 className=" text-center mb-5 text-2xl font-semibold first-letter:uppercase">{categoryname}</h1>
                 </div>
@@ -27,9 +23,7 @@ const CategoryPage = () => {
                     <div className="flex justify-center">
                         <Loader />
                     </div>
-
                     :
-
                     <section className="text-gray-600 body-font">
                         {/* main 2 */}
                         <div className="container px-5 py-5 mx-auto">
@@ -58,7 +52,8 @@ const CategoryPage = () => {
                                                                 ₹{price}
                                                             </h1>
                                                             <div className="flex justify-center ">
-                                                                <button className=" bg-pink-500 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold">
+                                                                <button className=" bg-black hover:bg-gray-700 w-full text-white py-[4px] rounded-lg font-bold">
+                                                                    Add To cart
                                                                 </button>
                                                             </div>
                                                         </div>
