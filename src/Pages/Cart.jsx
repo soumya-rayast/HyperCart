@@ -13,6 +13,7 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
+
   // function for delete item from cart
   const deleteCart = (item) => {
     dispatch(deleteFromCart(item));
@@ -40,7 +41,15 @@ const Cart = () => {
   }, [cartItems]);
 
   // for user address 
-  const user = JSON.parse(localStorage.getItem("users"));
+  const [user] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("user")) || {};
+    } catch (error) {
+      console.error("Error parsing user data:", error);
+      return {};
+    }
+  });
+
   const [addressInfo, setAddressInfo] = useState({
     name: '',
     address: '',

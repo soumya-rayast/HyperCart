@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { auth, fireDB } from '../firebase/firebaseconfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection, doc, getDoc, Timestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
 import Loader from '../Components/Loader';
 
 const Auth = () => {
@@ -53,65 +53,68 @@ const Auth = () => {
     if (!validateForm()) return;
     setLoading(true);
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, user.email, user.password);
-      const newUser = {
-        name: user.name,
-        email: userCredential.user.email,
-        uid: userCredential.user.uid,
-        role: user.role || 'user',
-        time: Timestamp.now(),
-        date: new Date().toLocaleString('en-us', {
-          month: 'short',
-          day: '2-digit',
-          year: 'numeric',
-        }),
-      };
-      // Save to Firestore
-      const userReference = collection(fireDB, 'users');
-      await addDoc(userReference, newUser);
+        const userCredential = await createUserWithEmailAndPassword(auth, user.email, user.password);
+        const newUser = {
+            name: user.name,
+            email: userCredential.user.email,
+            role: user.role || 'user',
+            time: Timestamp.now(),
+            date: new Date().toLocaleString('en-us', {
+                month: 'short',
+                day: '2-digit',
+                year: 'numeric',
+            }),
+        };
+        // Save user data with uid as the document ID
+        const userRef = doc(fireDB, 'users', userCredential.user.uid);
+        await setDoc(userRef, newUser); // Use setDoc instead of addDoc for custom ID
 
-      // Save to local storage
-      saveUserToLocalStorage(newUser);
+        // Save to local storage
+        saveUserToLocalStorage(newUser);
 
-      setUser({ name: '', email: '', password: '' });
-      toast.success('Signup Successful');
-      navigate('/');
+        setUser({ name: '', email: '', password: '' });
+        toast.success('Signup Successful');
+        navigate('/');
     } catch (error) {
-      toast.error(`Signup Failed: ${error.message}`);
-      console.error(error);
+        toast.error(`Signup Failed: ${error.message}`);
+        console.error(error);
     }
     setLoading(false);
-  };
-
+};
   // Login Function
   const userLoginFunction = async () => {
     if (!validateForm()) return;
     setLoading(true);
     try {
         const userCredential = await signInWithEmailAndPassword(auth, user.email, user.password);
-        
+
+        // Fetch user data using the uid
         const userRef = doc(fireDB, 'users', userCredential.user.uid);
         const userDoc = await getDoc(userRef);
 
-        // Check if the document exists
         if (!userDoc.exists()) {
-            throw new Error('User document does not exist');
+            throw new Error('User document does not exist in Firestore');
         }
 
         const userData = userDoc.data();
+        console.log('Fetched user data:', userData);
+
         const loggedInUser = {
             email: userCredential.user.email,
             uid: userCredential.user.uid,
             role: userData.role || 'user',
+            name: userData.name || 'Unknown',
             lastLogin: new Date().toLocaleString(),
         };
 
+        // Save user data to local storage
         saveUserToLocalStorage(loggedInUser);
-        toast.success('Login Successful');
-        navigate('/');
+
+        toast.success(`Login Successful as ${userData.role}`);
+        navigate(userData.role === 'admin' ? '/admin-dashboard' : '/user-dashboard');
     } catch (error) {
         toast.error(`Login Failed: ${error.message}`);
-        console.error('Error details:', error);
+        console.error('Error during login:', error);
     }
     setLoading(false);
 };
@@ -178,9 +181,8 @@ const Auth = () => {
           <button
             type="button"
             onClick={isLogin ? userLoginFunction : userSignUpFunction}
-            className={`bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg w-full transition-all duration-300 ${
-              loading ? 'opacity-70 cursor-not-allowed' : ''
-            }`}
+            className={`bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg w-full transition-all duration-300 ${loading ? 'opacity-70 cursor-not-allowed' : ''
+              }`}
             disabled={loading}
           >
             {loading ? 'Processing...' : isLogin ? 'Login' : 'Signup'}

@@ -22,8 +22,6 @@ const Testimonial = () => {
             title: "Creative Director",
         },
     ];
-
-
     return (
         <div>
             <section className="text-gray-600 body-font mb-10">

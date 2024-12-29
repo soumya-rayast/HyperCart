@@ -9,11 +9,12 @@ import { useState } from "react";
 const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
+
     return (
         <>
             <Button
                 onClick={handleOpen}
-                className="w-full px-4 py-3 text-center text-gray-100 bg-black hover:bg-pink-600 rounded-xl"
+                className="w-full px-4 py-3 text-center text-gray-100 bg-black hover:bg-gray-600 rounded-xl"
             >
                 Buy now
             </Button>
@@ -35,11 +36,11 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
                                 onChange={(e) => {
                                     setAddressInfo({
                                         ...addressInfo,
-                                        name: e.target.value
-                                    })
+                                        name: e.target.value,
+                                    });
                                 }}
                                 placeholder="Enter your name"
-                                className="w-full px-3 py-2 bg-white border rounded-md text-black placeholder-gay-300"
+                                className="w-full px-3 py-2 bg-white border rounded-md text-black placeholder-gray-300"
                             />
                             <input
                                 type="text"
@@ -48,32 +49,37 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
                                 onChange={(e) => {
                                     setAddressInfo({
                                         ...addressInfo,
-                                        address: e.target.value
-                                    })
+                                        address: e.target.value,
+                                    });
                                 }}
                                 placeholder="Enter your address"
-                                className="w-full px-3 py-2 bg-white border rounded-md text-black placeholder-gay-300"
+                                className="w-full px-3 py-2 bg-white border rounded-md text-black placeholder-gray-300"
                             />
                             <input
                                 type="number"
                                 name="pincode"
-                                value={formData.pincode}
-                                onChange={handleChange}
+                                value={addressInfo.pincode}
+                                onChange={(e) => {
+                                    setAddressInfo({
+                                        ...addressInfo,
+                                        pincode: e.target.value,
+                                    });
+                                }}
                                 placeholder="Enter your pincode"
-                                className="w-full px-3 py-2 bg-white border rounded-md text-black placeholder-gay-300"
+                                className="w-full px-3 py-2 bg-white border rounded-md text-black placeholder-gray-300"
                             />
                             <input
                                 type="text"
                                 name="mobileNumber"
-                                vvalue={addressInfo.mobileNumber}
+                                value={addressInfo.mobileNumber}
                                 onChange={(e) => {
                                     setAddressInfo({
                                         ...addressInfo,
-                                        mobileNumber: e.target.value
-                                    })
+                                        mobileNumber: e.target.value,
+                                    });
                                 }}
                                 placeholder="Enter your mobile number"
-                                className="w-full px-3 py-2 bg-white border rounded-md text-black placeholder-gay-300"
+                                className="w-full px-3 py-2 bg-white border rounded-md text-black placeholder-gray-300"
                             />
                         </div>
                     </DialogBody>

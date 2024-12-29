@@ -6,7 +6,12 @@ import { useContext } from 'react';
 import myContext from '../context/myContext';
 
 const AdminDashboard = () => {
-    const user = JSON.parse(localStorage.getItem('users'));
+    let user = null;
+    try {
+        user = JSON.parse(localStorage.getItem('users'));
+    } catch (error) {
+        console.error("Failed to parse user data from localStorage:", error);
+    }
     const context = useContext(myContext);
     const { getAllproduct, getAllOrder, getAllUser } = context;
 
@@ -29,12 +34,17 @@ const AdminDashboard = () => {
                             <img src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png" alt="" />
                         </div>
                         {/* text */}
-                        <div className="">
-                            <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Name :</span> {user?.name}</h1>
-                            <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Email :</span> {user?.email}</h1>
-                            <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Date :</span> {user?.date}</h1>
-                            <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Role :</span> {user?.role}</h1>
-                        </div>
+                        {user ? (
+                            <>
+                                <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Name :</span> {user.name}</h1>
+                                <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Email :</span> {user.email}</h1>
+                                <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Date :</span> {user.date}</h1>
+                                <h1 className="text-center text-lg text-pink-500"><span className="font-bold">Role :</span> {user.role}</h1>
+                            </>
+                        ) : (
+                            <p className="text-center text-lg text-pink-500">User data not available</p>
+                        )}
+
                     </div>
                 </div>
 
@@ -123,7 +133,7 @@ const AdminDashboard = () => {
                                             <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                                         </svg>
                                     </div>
-                                    {/* <h2 className="title-font font-medium text-3xl text-pink-400 fonts1">{getAllUser.length}</h2> */}
+                                    <h2 className="title-font font-medium text-3xl text-pink-400 fonts1">{getAllUser.length}</h2>
                                     <p className="text-pink-500 font-bold">Total Users</p>
                                 </div>
                             </Tab>

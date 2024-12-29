@@ -63,12 +63,12 @@ const ProductInfo = () => {
                     :
                     <>
                         <div className="max-w-6xl px-4 mx-auto">
-                            <div className="flex flex-wrap mb-24 -mx-4">
+                            <div className="flex flex-wrap mb-24 -mx-4 border ">
                                 <div className="w-full px-4 mb-8 md:w-1/2 md:mb-0">
                                     <div className="">
                                         <div className="">
                                             <img
-                                                className=" w-full lg:h-[39em] rounded-lg"
+                                                className=" w-full lg:h-[39em] rounded-lg border"
                                                 src={product?.productImageUrl}
                                                 alt={product?.title}
                                             />

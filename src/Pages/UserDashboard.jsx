@@ -1,30 +1,34 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Layout from "../Layout/Layout";
 import myContext from "../context/myContext";
 import Loader from "../Components/Loader";
-
+import { FaUser } from "react-icons/fa";
 const UserDashboard = () => {
 
   const context = useContext(myContext);
   const { loading, getAllOrder } = context;
-  const [user] = useState(() => JSON.parse(localStorage.getItem("users")) || {});
+  const [user] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("user")) || {};
+    } catch (error) {
+      console.error("Error parsing user data:", error);
+      return {};
+    }
+  });
+
 
   return (
     <Layout>
       <div className="container mx-auto px-4 py-6 lg:py-8">
-        <div className="py-6 rounded-xl border border-gray-300 shadow-lg mb-8 bg-white">
+        <div className="py-6 rounded-xl border border-gray-300 shadow-lg mb-8 bg-white flex justify-center items-center">
           <div className="flex justify-center mb-4">
-            <img
-              className="h-16 w-16 rounded-full border-2 border-pink-400"
-              src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png"
-              alt="User Profile"
-            />
+            <FaUser size={50} />
           </div>
-          <div className="text-center">
+          <div className=" ml-10">
             <h1 className="text-xl font-bold text-gray-800">Name: {user?.name}</h1>
-            <h2 className="text-lg font-medium text-gray-600">Email: {user?.email} t</h2>
-            <h1 className=" text-center text-lg"><span className=" font-bold">Date : </span>{user?.date}</h1>
-            <h1 className=" text-center text-lg"><span className=" font-bold">Role : </span>{user?.role}</h1>
+            <h2 className="text-lg font-medium text-gray-800">Email: {user?.email} </h2>
+            <h1 className=" text-lg"><span className=" font-bold">Date : </span>{user?.date}</h1>
+            <h1 className="text-lg"><span className=" font-bold">Role : </span>{user?.role}</h1>
           </div>
         </div>
 

@@ -29,9 +29,13 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/*' element={<NoPage />} />
             <Route path='/productInfo/:id' element={<ProductInfo />} />
-            <Route path='/cart' element={<Cart />} />
             <Route path='/allProduct' element={<AllProducts />} />
             <Route path='/category/:categoryname' element={<CategoryPage />} />
+            <Route path='/cart' element={
+              <ProtectedRouteForUser >
+                <Cart />
+              </ProtectedRouteForUser>
+            } />
             <Route path='/user-dashboard' element={
               <ProtectedRouteForUser >
                 <UserDashboard />
