@@ -8,12 +8,10 @@ import BuyNowModal from '../Components/BuyNowModal';
 import { addDoc, collection, Timestamp } from 'firebase/firestore';
 import { fireDB } from '../firebase/firebaseconfig';
 import { Navigate } from 'react-router-dom';
-
+import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart);
-
   const dispatch = useDispatch();
-
   // function for delete item from cart
   const deleteCart = (item) => {
     dispatch(deleteFromCart(item));
@@ -43,12 +41,17 @@ const Cart = () => {
   // for user address 
   const [user] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem("user")) || {};
+      const storedUser = JSON.parse(localStorage.getItem("user")) || {};
+      return {
+        uid: storedUser.uid || "anonymous", // Provide a fallback UID
+        email: storedUser.email || "guest@example.com", // Fallback email
+      };
     } catch (error) {
       console.error("Error parsing user data:", error);
       return {};
     }
   });
+  
 
   const [addressInfo, setAddressInfo] = useState({
     name: '',
@@ -69,9 +72,14 @@ const Cart = () => {
   // Function for buy now
   const buyNowFunction = () => {
     if (addressInfo.name === "" || addressInfo.address === "" || addressInfo.pincode === "" || addressInfo.mobileNumber === "") {
-      return toast.error("All Fields are required")
+      return toast.error("All fields are required");
     }
-    // Order Information 
+  
+    if (!user || !user.uid) {
+      console.error("User object is invalid:", user);
+      return toast.error("User authentication is missing.");
+    }
+  
     const orderInfo = {
       cartItems,
       addressInfo,
@@ -79,15 +87,15 @@ const Cart = () => {
       userid: user.uid,
       status: "confirmed",
       time: Timestamp.now(),
-      date: new Date().toLocaleString(
-        "en-US",
-        {
-          month: "short",
-          day: "2-digit",
-          year: "numeric",
-        }
-      )
-    }
+      date: new Date().toLocaleString("en-US", {
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+      }),
+    };
+  
+    console.log("Placing order with info:", orderInfo);
+  
     try {
       const orderRef = collection(fireDB, 'order');
       addDoc(orderRef, orderInfo);
@@ -96,12 +104,15 @@ const Cart = () => {
         address: "",
         pincode: "",
         mobileNumber: "",
-      })
-      toast.success("Order Placed Successfully")
+      });
+      toast.success("Order placed successfully");
     } catch (error) {
-      console.log(error)
+      console.error("Error placing order:", error);
+      toast.error("Failed to place order. Please try again.");
     }
-  }
+  };
+  
+  
   return (
     <Layout>
       <div className="container mx-auto px-4 max-w-7xl  lg:px-0">
@@ -153,6 +164,7 @@ const Cart = () => {
                           <div className="mb-2 flex">
                             <div className="min-w-24 flex">
                               <button onClick={() => handleDecrement(id)} type="button" className="h-7 w-7" >
+                              <CiCircleMinus />
                               </button>
                               <input
                                 type="text"
@@ -160,6 +172,7 @@ const Cart = () => {
                                 value={quantity}
                               />
                               <button onClick={() => handleIncrement(id)} type="button" className="flex h-7 w-7 items-center justify-center">
+                              <CiCirclePlus />
                               </button>
                             </div>
                             <div className="ml-6 flex text-sm">

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { auth, fireDB } from '../firebase/firebaseconfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection, doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
+import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
 import Loader from '../Components/Loader';
 
 const Auth = () => {
@@ -67,7 +67,7 @@ const Auth = () => {
         };
         // Save user data with uid as the document ID
         const userRef = doc(fireDB, 'users', userCredential.user.uid);
-        await setDoc(userRef, newUser); // Use setDoc instead of addDoc for custom ID
+        await setDoc(userRef, newUser); 
 
         // Save to local storage
         saveUserToLocalStorage(newUser);
@@ -118,9 +118,6 @@ const Auth = () => {
     }
     setLoading(false);
 };
-
-
-  // Toggle Login/Signup Mode
   const toggleAuthMode = () => {
     setIsLogin(!isLogin);
     setUser({ name: '', email: '', password: '' });

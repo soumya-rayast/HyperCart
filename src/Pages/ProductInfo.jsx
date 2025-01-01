@@ -26,10 +26,8 @@ const ProductInfo = () => {
             setLoading(false)
         }
     }
-
     const cartItems = useSelector((state) => state.cart || []);
     const dispatch = useDispatch();
-
     // Function for add to cart
     const addCart = (item) => {
         dispatch(addToCart(item));

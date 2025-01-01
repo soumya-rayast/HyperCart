@@ -85,7 +85,7 @@ const HomePageProductCard = () => {
                                                 {existsInCart ? (
                                                     <button
                                                         onClick={() => deleteCart(item)}
-                                                        className="bg-red-700 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold"
+                                                        className="bg-red-700 hover:bg-gray-600 w-full text-white py-[4px] rounded-lg font-bold"
                                                     >
                                                         Remove from Cart
                                                     </button>

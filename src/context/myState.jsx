@@ -13,24 +13,23 @@ const myState = ({ children }) => {
     const getAllProductFunction = async () => {
         setLoading(true);
         try {
-            const q = query(
-                collection(fireDB, 'products'),
-                orderBy('time')
-            );
+            const q = query(collection(fireDB, 'products'), orderBy('time'));
             const data = onSnapshot(q, (QuerySnapshot) => {
                 let productArray = [];
                 QuerySnapshot.forEach((doc) => {
-                    productArray.push({ ...doc.data(), id: doc.id })
+                    productArray.push({ ...doc.data(), id: doc.id });
                 });
+                console.log("Fetched products: ", productArray); // Check the output here
                 setGetAllProducts(productArray);
                 setLoading(false);
-            })
-            return () => data;
+            });
+            return () => data();
         } catch (error) {
             console.log(error);
             setLoading(false);
         }
-    }
+    };
+    
 
     // order state 
     const [getAllOrder, setGetAllOrder] = useState([]);

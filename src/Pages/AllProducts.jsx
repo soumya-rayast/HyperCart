@@ -8,13 +8,10 @@ const AllProducts = () => {
     const navigate = useNavigate();
     const context = useContext(myContext);
     const { loading, getAllproduct } = context;
-
     const [searchQuery, setSearchQuery] = useState("");
-
     const filteredProducts = getAllproduct.filter((item) =>
         item.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
     return (
         <Layout>
             <div className="py-8">
@@ -27,7 +24,7 @@ const AllProducts = () => {
                         placeholder="Search products..."
                         className="border p-2 rounded-full outline-none px-4 w-80"
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)} // Update search query
+                        onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
                 <section className="text-gray-800 body-font px-10">

@@ -20,10 +20,7 @@ const categoryList = [
 const AddProduct = () => {
     const context = useContext(myContext);
     const { loading, setLoading } = context;
-
-    // for navigating 
     const navigate = useNavigate();
-
     const [product, setProduct] = useState({
         title: '',
         price: "",

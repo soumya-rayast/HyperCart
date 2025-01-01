@@ -7,7 +7,6 @@ import Testimonial from '../Components/Testimonial'
 const Home = () => {
     return (
         <Layout>
-
             <Category />
             <HomePageProductCard />
             <Track />

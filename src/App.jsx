@@ -42,14 +42,12 @@ function App() {
               </ProtectedRouteForUser>
             } />
             <Route path='/admin-dashboard' element={
-              <ProtectedRouteForAdmin >
-                <AdminDashboard />
-              </ProtectedRouteForAdmin>
+
+              <AdminDashboard />
             } />
             <Route path='/addproduct' element={
-              <ProtectedRouteForAdmin>
-                <AddProduct />
-              </ProtectedRouteForAdmin>
+
+              <AddProduct />
             } />
             <Route path='/updateproduct/:id' element={<UpdateProduct />} />
           </Routes>

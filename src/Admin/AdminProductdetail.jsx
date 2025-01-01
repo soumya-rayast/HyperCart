@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 
 const AdminProductdetail = () => {
     const context = useContext(myContext);
-    const { loading = false, setLoading, getallproduct = [] ,getAllProductFunction } = context || {};
+    const { loading = false, setLoading, getallproduct ,getAllProductFunction } = context;
     const navigate = useNavigate();
 
     // function for delete product 
@@ -37,7 +37,6 @@ const AdminProductdetail = () => {
                 <table className="w-full text-left border border-collapse sm:border-separate border-purple-300 text-purple-500">
                     <thead>
                         <tr>
-                            {/* Table headers */}
                         </tr>
                     </thead>
                     <tbody>
@@ -55,7 +54,7 @@ const AdminProductdetail = () => {
                                         </td>
                                         <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500">
                                             <div className="flex justify-center">
-                                                <img className="w-20" src={productImageUrl || 'path/to/placeholder.png'} alt={title} />
+                                                <img className="w-20" src={productImageUrl} alt={title} />
                                             </div>
                                         </td>
                                         <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500">{title}</td>
